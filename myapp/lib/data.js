@@ -8,8 +8,8 @@ export const getWorkout = async () => {
     console.log("Email " + userEmail)
     try {
         db.connect()
-        const post = await Workout.find({creator: userEmail})
-        return post
+        const workouts = await Workout.find({ creator: userEmail });
+        return workouts
     } catch (error) {
         throw new Error("Failed to fetch Post! " + error);
  
