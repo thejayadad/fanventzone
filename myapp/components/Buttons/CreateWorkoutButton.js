@@ -5,26 +5,13 @@ import { FiPlus } from 'react-icons/fi';
 import Logo from '../Logo';
 import { addWorkout } from '@/lib/actions';
 import { Input } from '@nextui-org/react';
-import { Toast } from '@nextui-org/react';
 
 
 const CreateWorkoutButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    setLoading(true);
 
-    try {
-      await addWorkout(e.target.title.value);
-      setIsOpen(false);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
   const handleRefresh = () => {
     window.location.reload();
   };
@@ -53,20 +40,20 @@ const CreateWorkoutButton = () => {
               </div>
               <form
                 className="flex flex-col gap-4"
-                onSubmit={handleSubmit}
+                action={addWorkout}
               >
                 <Input
                   name="title"
                   type="text"
                   variant="bordered"
-                  label="Title"
                   autoComplete="off"
+                  placeholder='Title...'
                 />
-                <Button>
-                    CREATE
-                {/* // onClick={handleRefresh}
-                // radius="full" type="submit" disabled={loading}
-                //   {loading ? 'Creating...' : 'Create'} */}
+                <Button
+                
+                onClick={handleRefresh}
+                radius="full" type="submit" disabled={loading}>
+                  {loading ? 'Creating...' : 'Create'}
                 </Button>
               </form>
             </div>
