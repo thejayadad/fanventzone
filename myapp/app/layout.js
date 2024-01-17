@@ -3,6 +3,7 @@ import './globals.css'
 import { ThemeProvider } from '@/lib/ThemeProvider'
 import NextThemesProvider from '@/lib/NextThemeProvider'
 import TopNavbar from '@/components/Navbar'
+import Footer from '@/components/Footer/Footer'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -20,11 +21,12 @@ export default function RootLayout({ children }) {
       colorScheme: "dark",
     }}
     >
-      <body className='dark:bg-neutral-950'>
+      <body className=''>
       <NextThemesProvider>
       <ThemeProvider>
       <TopNavbar />
        {children}
+       <Footer />
        </ThemeProvider>
       </NextThemesProvider>
         </body>
