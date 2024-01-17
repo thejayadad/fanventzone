@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaQuestionCircle, FaCog, FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 import {} from "react-icons/fi"
+
 const Footer = () => {
   return (
 
