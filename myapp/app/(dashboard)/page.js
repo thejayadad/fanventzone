@@ -1,4 +1,8 @@
+import CreateWorkoutButton from '@/components/Buttons/CreateWorkoutButton'
+import { addWorkout } from '@/lib/actions'
+import { getWorkout } from '@/lib/data'
 import getServerUser from '@/lib/getServerUser'
+import { Skeleton } from '@nextui-org/skeleton'
 import { Suspense } from 'react'
 
 
@@ -8,6 +12,13 @@ export default async function Home() {
   <Suspense fallback={<WelcomeMsgFallback />}>
     <WelcomeMsg />
   </Suspense>
+  <Suspense fallback={<div>Loading Workouts...</div>}>
+  <WorkoutList />
+  </Suspense>
+
+
+
+ 
   </>
 
   )
@@ -33,5 +44,41 @@ function WelcomeMsgFallback(){
       <Skeleton className="h-3 w-3/5 rounded-lg"/>
         <Skeleton className="h-3 w-4/5 rounded-lg"/>
     </div>
+  )
+}
+
+async function WorkoutList(){
+  const user = await getServerUser()
+  const workouts = await getWorkout()
+
+  if (workouts.length === 0) {
+    return (
+      <>
+      <h2 className='text-center'>Post Your First Workout</h2>
+      <form
+      action={addWorkout}
+      >
+        <input
+        name='title'
+        type='text'
+        placeholder='Title...'
+        />
+        <button
+        type='submit'
+        >Create</button>
+      </form>
+      </>
+    )
+  }
+
+  return (
+    <>
+        <CreateWorkoutButton />
+    <div className="flex flex-col gap-4 mt-6">
+    {workouts.map((workout) => (
+      <h2>{workout.title}</h2>
+    ))}
+  </div>
+    </>
   )
 }
