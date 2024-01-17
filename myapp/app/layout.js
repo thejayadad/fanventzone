@@ -1,10 +1,8 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { ThemeProvider } from '@/lib/ThemeProvider'
-import NextThemesProvider from '@/lib/NextThemeProvider'
-import TopNavbar from '@/components/Navbar'
-import Footer from '@/components/Footer/Footer'
-
+import { NextThemeProvider } from '@/providers/NextThemeProvider'
+import NextUIProviderWrapper from '@/providers/NextUiProvider'
+import TopNavBar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,14 +19,17 @@ export default function RootLayout({ children }) {
       colorScheme: "dark",
     }}
     >
-      <body className=''>
-      <NextThemesProvider>
-      <ThemeProvider>
-      <TopNavbar />
-       {children}
-       <Footer />
-       </ThemeProvider>
-      </NextThemesProvider>
+      <body>
+       <NextUIProviderWrapper>
+       <NextThemeProvider>
+       <div className='flex min-h-screen w-full flex-col items-center'>
+        <TopNavBar />
+        <main className='flex flex-grow w-full justify-center items-center dark:bg-neutral-950'>
+        {children}
+        </main>
+       </div>
+       </NextThemeProvider>
+       </NextUIProviderWrapper>
         </body>
     </html>
   )

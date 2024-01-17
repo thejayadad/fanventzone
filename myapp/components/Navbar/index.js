@@ -1,22 +1,18 @@
 import React from 'react'
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-import { ThemeSwitcher } from '../ThemeSwitcher';
-import Logo from '../Logo';
+import Logo from '../Logo'
+import ThemeToggle from '../Buttons/ThemeToggle'
+import AuthLinks from './AuthLinks'
 
-
-const TopNavbar = () => {
+const TopNavBar = () => {
   return (
-    <Navbar position="static isBordered">
-        <NavbarBrand>
-        <p className="font-bold text-inherit">
-            <Logo />
-        </p>
-        </NavbarBrand>
-        <NavbarContent justify="end">
-            <ThemeSwitcher />
-        </NavbarContent>
-    </Navbar>
+    <header className='flex w-full items-center justify-between p-4 px-8 h-[100px] max-w-screen-xl mx-auto'>
+        <Logo />
+        <div className='flex gap-4 items-center'>
+            <ThemeToggle />
+            <AuthLinks />
+        </div>
+    </header>
   )
 }
 
-export default TopNavbar
+export default TopNavBar
