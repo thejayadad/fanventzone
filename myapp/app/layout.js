@@ -3,6 +3,7 @@ import './globals.css'
 import { NextThemeProvider } from '@/providers/NextThemeProvider'
 import NextUIProviderWrapper from '@/providers/NextUiProvider'
 import TopNavBar from '@/components/Navbar'
+import AuthProvider from '@/SessionProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,17 +21,19 @@ export default function RootLayout({ children }) {
     }}
     >
       <body>
-       <NextUIProviderWrapper>
+        <AuthProvider>
+        <NextUIProviderWrapper>
        <NextThemeProvider>
        <div className='flex min-h-screen w-full flex-col items-center'>
         <TopNavBar />
-        <main className='flex flex-grow w-full justify-center items-center dark:bg-neutral-950'>
+        <main className='flex flex-grow w-full justify-center items-center'>
         {children}
         </main>
        </div>
        </NextThemeProvider>
        </NextUIProviderWrapper>
-        </body>
+        </AuthProvider>
+      </body>
     </html>
   )
 }

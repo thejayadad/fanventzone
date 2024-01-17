@@ -6,7 +6,7 @@ const Logo = () => {
     <Link
     className='flex items-center justify-center h-16  text-gray-700'
     href={'/'}>
-           <span class="text-3xl font-bold">OnlineFitnessZone</span>
+    <span class="text-3xl font-bold">OnlineFitnessZone</span>
  
     </Link>
   )
